@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Sky palette */
+    --sky-deep:    #060d1a;
+    --sky-mid:     #0a1628;
+    --sky-900:     #0d1f4a;
+    --sky-800:     #112248;
+    --sky-700:     #1a3060;
+    --sky-accent:  #4a80d4;
+    --sky-glow:    rgba(74,128,212,0.15);
+
+    /* Keep gold accent for UI elements */
+    --accent:       #c8a96e;
+    --accent-light: #e2c99a;
+
+    /* Text on dark sky */
+    --ink-950: #060d1a;
+    --ink-900: #0a1628;
+    --ink-800: #112248;
+    --ink-200: #c8d8f0;
+    --ink-100: #e8f0ff;
+  }
+
+@media (min-width: 768px) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--sky-deep);
+  }
+
+  body {
+    background-color: transparent;
+    color: var(--ink-100);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--sky-accent);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--sky-deep); }
+  ::-webkit-scrollbar-thumb { background: var(--sky-accent); border-radius: 2px; }
+
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    line-height: 1.2;
+  }
+}
+
+@layer components {
+  /* Grain stays — it adds depth over sky too */
+  .grain-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .accent-line {
+    width: 2.5rem;
+    height: 1px;
+    background-color: var(--accent);
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.75rem;
+  }
+
+  .nav-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-200);
+    transition: color 0.25s ease;
+    position: relative;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 0; height: 1px;
+    background-color: var(--accent);
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover, .nav-link.active { color: var(--accent-light); }
+  .nav-link.active::after, .nav-link:hover::after { width: 100%; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 2rem;
+    background-color: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--accent);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: -1;
+  }
+  .btn-primary:hover { color: var(--sky-deep); }
+  .btn-primary:hover::before { transform: translateX(0); }
+
+  /* Project cards — sky-toned */
+  .project-card {
+    background: rgba(13,31,74,0.7);
+    border: 1px solid rgba(74,128,212,0.12);
+    backdrop-filter: blur(8px);
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .project-card:hover {
+    border-color: rgba(74,128,212,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(10,22,40,0.6);
+  }
+
+  .skill-bar-fill {
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Section backgrounds — glassy sky panels */
+  .sky-panel {
+    background: rgba(10,22,40,0.55);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(74,128,212,0.08);
+    border-bottom: 1px solid rgba(74,128,212,0.08);
+  }
+}
+
+/* Projects grid — no scroll hijack, clean cards */
+#projects { isolation: isolate; }
+
+/* ── Custom cursor ── */
+.cursor-dot {
+  width: 6px; height: 6px;
+  background-color: var(--sky-accent);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease;
+}
+.cursor-ring {
+  width: 32px; height: 32px;
+  border: 1px solid rgba(74,128,212,0.5);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+}
+.cursor-ring.hovered { width: 52px; height: 52px; border-color: var(--sky-accent); }
+.cursor-dot.hovered  { width: 4px;  height: 4px; }
+
+/* Pulse for model glow */
+@keyframes heroPulse {
+  0%,100% { opacity: 0.5; transform: scale(1); }
+  50%     { opacity: 0.9; transform: scale(1.1); }
+}
