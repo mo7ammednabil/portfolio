@@ -1,11 +1,40 @@
 import FadeIn from './FadeIn'
+import { useRef } from 'react'
 
 export default function About() {
+  const cardRef = useRef(null)
+
+  const handleMouseMove = (e) => {
+    const rect = cardRef.current.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+
+    const centerX = rect.width / 2
+    const centerY = rect.height / 2
+
+    const rotateX = -(y - centerY) / 20
+    const rotateY = (x - centerX) / 20
+
+    cardRef.current.style.transform = `
+      rotateX(${rotateX}deg) 
+      rotateY(${rotateY}deg)
+      scale(1.03)
+    `
+
+    // glow follow cursor
+    cardRef.current.style.setProperty('--x', `${x}px`)
+    cardRef.current.style.setProperty('--y', `${y}px`)
+  }
+
+  const handleMouseLeave = () => {
+    cardRef.current.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`
+  }
+
   return (
     <section id="about" className="py-32 px-6 sky-panel">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-          
+
           {/* Left */}
           <div>
             <FadeIn>
@@ -22,29 +51,47 @@ export default function About() {
               </h2>
             </FadeIn>
 
-            {/* Avatar Image */}
+            {/* Interactive Image */}
             <FadeIn delay={0.2}>
-              <div className="mt-12 relative w-full max-w-xs aspect-square overflow-hidden rounded-2xl group">
+              <div
+                ref={cardRef}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                className="mt-12 relative w-full max-w-xs aspect-square rounded-2xl overflow-hidden transition duration-300"
+                style={{
+                  transformStyle: 'preserve-3d',
+                }}
+              >
 
-                {/* Glow خلفي */}
-                <div className="absolute -inset-2 bg-gradient-to-r from-[#c8a96e]/20 to-transparent blur-2xl opacity-40 group-hover:opacity-60 transition duration-500" />
+                {/* glow يتبع الماوس */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: `
+                      radial-gradient(
+                        circle at var(--x, 50%) var(--y, 50%), 
+                        rgba(200,169,110,0.25),
+                        transparent 40%
+                      )
+                    `,
+                  }}
+                />
 
                 {/* الصورة */}
                 <img
                   src="/my_photo.png"
                   alt="Mohamed Nabil"
-                  className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover"
                 />
 
-                {/* Overlay cinematic */}
+                {/* overlay cinematic */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-black/40" />
 
-                {/* Border */}
+                {/* border */}
                 <div className="absolute inset-0 border border-sky-400/20 rounded-2xl pointer-events-none" />
 
               </div>
             </FadeIn>
-
           </div>
 
           {/* Right */}
