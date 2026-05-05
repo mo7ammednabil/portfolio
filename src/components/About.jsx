@@ -22,24 +22,29 @@ export default function About() {
               </h2>
             </FadeIn>
 
-            {/* Avatar بدل AM */}
+            {/* Avatar Image */}
             <FadeIn delay={0.2}>
-              <div className="mt-12 relative w-full max-w-xs aspect-square overflow-hidden">
-                <div
-                  className="w-full h-full"
-                  style={{
-                    background:
-                      'linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #020617 100%)',
-                    border: '1px solid rgba(74,128,212,0.2)',
-                  }}
+              <div className="mt-12 relative w-full max-w-xs aspect-square overflow-hidden rounded-2xl group">
+
+                {/* Glow خلفي */}
+                <div className="absolute -inset-2 bg-gradient-to-r from-[#c8a96e]/20 to-transparent blur-2xl opacity-40 group-hover:opacity-60 transition duration-500" />
+
+                {/* الصورة */}
+                <img
+                  src="/my_photo.png"
+                  alt="Mohamed Nabil"
+                  className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-display text-7xl text-ink-700 select-none">
-                    MN
-                  </span>
-                </div>
+
+                {/* Overlay cinematic */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-black/40" />
+
+                {/* Border */}
+                <div className="absolute inset-0 border border-sky-400/20 rounded-2xl pointer-events-none" />
+
               </div>
             </FadeIn>
+
           </div>
 
           {/* Right */}
@@ -77,7 +82,10 @@ export default function About() {
 
             {/* Quick facts */}
             <FadeIn delay={0.43}>
-              <div className="pt-6 grid grid-cols-2 gap-4 border-t" style={{ borderColor: "rgba(74,128,212,0.15)" }}>
+              <div
+                className="pt-6 grid grid-cols-2 gap-4 border-t"
+                style={{ borderColor: "rgba(74,128,212,0.15)" }}
+              >
                 {[
                   ['Based in', 'Egypt'],
                   ['University', 'Damanhour University'],
@@ -85,8 +93,12 @@ export default function About() {
                   ['Tech', 'Firebase, REST APIs'],
                 ].map(([key, value]) => (
                   <div key={key}>
-                    <div className="font-mono text-xs text-ink-600 uppercase tracking-wider">{key}</div>
-                    <div className="text-ink-200 text-sm mt-1">{value}</div>
+                    <div className="font-mono text-xs text-ink-600 uppercase tracking-wider">
+                      {key}
+                    </div>
+                    <div className="text-ink-200 text-sm mt-1">
+                      {value}
+                    </div>
                   </div>
                 ))}
               </div>
