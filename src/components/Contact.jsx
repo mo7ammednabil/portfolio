@@ -8,20 +8,6 @@ export default function Contact() {
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
 
-  const handleChange = (e) =>
-    setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setSending(true)
-
-    // هنا ممكن بعدين تربطه بـ EmailJS أو backend
-    await new Promise((r) => setTimeout(r, 1200))
-
-    setSending(false)
-    setSent(true)
-  }
-
   return (
     <section id="contact" className="py-28 px-6 sky-panel">
       <div className="max-w-6xl mx-auto">
@@ -45,7 +31,7 @@ export default function Contact() {
 
             <FadeIn delay={0.2}>
               <p className="mt-6 text-ink-400 leading-relaxed">
-                I'm currently looking for internship and junior Android opportunities.
+                I'm currently looking for internship and junior Mobile Developer and Android opportunities.
                 If you have a role, project, or collaboration in mind, feel free to reach out.
               </p>
             </FadeIn>

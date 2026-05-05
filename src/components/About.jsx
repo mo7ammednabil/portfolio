@@ -47,7 +47,7 @@ export default function About() {
             <FadeIn delay={0.1}>
               <h2 className="font-display text-5xl md:text-6xl text-ink-100 leading-tight">
                 Building modern<br />
-                <em className="text-accent">Android apps.</em>
+                <em className="text-accent">Mobile apps.</em>
               </h2>
             </FadeIn>
 
@@ -99,8 +99,8 @@ export default function About() {
 
             <FadeIn delay={0.15}>
               <p>
-                I'm a Computer Science student and Android Developer focused on
-                building modern mobile applications using Kotlin and Jetpack Compose.
+                I'm a Computer Science student and Mobile Developer focused on
+                building modern mobile applications for both Android and iOS using Kotlin, Flutter, and React Native.
                 I enjoy creating clean, scalable apps with strong architecture and
                 smooth user experiences.
               </p>
@@ -137,7 +137,7 @@ export default function About() {
                   ['Based in', 'Egypt'],
                   ['University', 'Damanhour University'],
                   ['Focus', 'Android (Kotlin, Compose)'],
-                  ['Tech', 'Firebase, REST APIs'],
+                  ['Tech', 'Firebase, REST APIs, MVVM'],
                 ].map(([key, value]) => (
                   <div key={key}>
                     <div className="font-mono text-xs text-ink-600 uppercase tracking-wider">

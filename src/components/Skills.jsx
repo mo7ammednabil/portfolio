@@ -94,9 +94,9 @@ export default function Skills() {
             <p className="font-mono text-xs text-ink-600 tracking-widest uppercase mb-6">Also familiar with</p>
             <div className="flex flex-wrap gap-3">
               {[
-                'GraphQL', 'Redux', 'Zustand', 'Storybook', 'Jest',
-                'Testing Library', 'Playwright', 'Docker', 'AWS', 'Vercel',
-                'Supabase', 'Prisma', 'tRPC', 'Radix UI', 'Three.js',
+                'Flutter', 'React Native',
+                'Testing', 'Docker', 'AWS', 'Vercel',
+                'Supabase', 'UI', 'Three.js',
               ].map((tech) => (
                 <span
                   key={tech}

@@ -69,7 +69,7 @@ export default function Hero() {
               transition={{ duration: 0.55, delay: 0.2 }}
             >
               <span className="accent-line" />
-              Android Developer
+              Mobile Developer
             </motion.p>
 
             <h1
@@ -94,7 +94,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.85 }}
             >
-              I build modern Android applications using Kotlin and Jetpack Compose.
+              I build modern mobile applications for both Android and iOS using Kotlin, Swift, and React Native.
               Focused on clean architecture (MVVM), performance, and real-world app development.
             </motion.p>
 
