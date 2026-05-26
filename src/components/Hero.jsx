@@ -135,7 +135,7 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 1.35 }}
             >
               {[
-                { value: '2+', label: 'Projects' },
+                { value: '5+', label: 'Projects' },
                 { value: 'Kotlin', label: 'Main Tech' },
                 { value: 'MVVM', label: 'Architecture' },
               ].map((s) => (
